@@ -1,4 +1,6 @@
-package org.asgs.annotationprocessor;
+package org.asgs.apdemo;
+
+import org.asgs.apdemo.PrivateOnlyAnnotationProcessor;
 
 import java.io.File;
 import java.util.Arrays;

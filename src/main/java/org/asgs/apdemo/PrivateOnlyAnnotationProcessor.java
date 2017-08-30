@@ -1,4 +1,4 @@
-package org.asgs.annotationprocessor;
+package org.asgs.apdemo;
 
 import java.util.stream.Collectors;
 import java.util.HashSet;

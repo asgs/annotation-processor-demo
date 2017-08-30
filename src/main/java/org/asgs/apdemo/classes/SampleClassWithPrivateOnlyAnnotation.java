@@ -1,4 +1,6 @@
-package org.asgs.annotationprocessor;
+package org.asgs.apdemo.classes;
+
+import org.asgs.apdemo.annotation.PrivateOnly;
 
 /**
  * A Sample class using the @PrivateOnly annotation.

@@ -1,4 +1,4 @@
-package org.asgs.annotationprocessor;
+package org.asgs.apdemo.annotation;
 
 import java.lang.annotation.Target;
 import java.lang.annotation.Retention;
