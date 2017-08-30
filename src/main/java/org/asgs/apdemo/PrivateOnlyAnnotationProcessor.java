@@ -26,7 +26,7 @@ import org.asgs.apdemo.annotation.PrivateOnly;
  *
  */
 @SupportedSourceVersion(value=SourceVersion.RELEASE_8)
-@SupportedAnnotationTypes({"*"})
+@SupportedAnnotationTypes({"org.asgs.apdemo.annotation.PrivateOnly"})
 public class PrivateOnlyAnnotationProcessor extends AbstractProcessor {
   public void init(ProcessingEnvironment processingEnvironment) {
     System.out.println("Inited MyAnnotationProcessor with " + processingEnvironment);
@@ -34,14 +34,16 @@ public class PrivateOnlyAnnotationProcessor extends AbstractProcessor {
   }
 
   public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnvironment) {
-    System.out.println("Received a process request for the annotations " + annotations + "; RoundEnvironment is " + roundEnvironment);
+    System.out.println("DEBUG - Received a process request for the annotations " + annotations + "; RoundEnvironment is " + roundEnvironment);
     Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(PrivateOnly.class);
-    System.out.println("Types annotated with @PrivateOnly are " + elements);
+    if (elements.isEmpty()) {
+      return true;
+    }
+    System.out.println("INFO - Types annotated with @PrivateOnly are " + elements);
     List<? extends Element> fields = elements.stream().filter(e -> (e.getKind() == ElementKind.FIELD || e.getKind() == ElementKind.METHOD)).collect(Collectors.toList());
     for (Element e : fields) {
       if (!e.getModifiers().contains(Modifier.PRIVATE)) {
-        System.err.println("Encountered a field with name " + e.getSimpleName() + " not having a private modifier.");
-        processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Encountered a field with name without a private access modifier", e);
+        processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Encountered a member without a private access modifier", e);
       }
     }
     return true;

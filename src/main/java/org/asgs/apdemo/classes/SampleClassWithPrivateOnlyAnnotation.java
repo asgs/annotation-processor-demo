@@ -13,10 +13,7 @@ public class SampleClassWithPrivateOnlyAnnotation {
 
   public SampleClassWithPrivateOnlyAnnotation(String arg) {
     fieldThatShouldBePrivate = arg;
-    System.out.println("Instantiated MySampleAnnotatedClass.");
   }
 
-  public SampleClassWithPrivateOnlyAnnotation() {
-    System.out.println("Instantiated MySampleAnnotatedClass with no-arg constructor.");
-  }
+  public SampleClassWithPrivateOnlyAnnotation() {}
 }

@@ -13,4 +13,4 @@ What it does right now, is declare a new annotation `@PrivateOnly` which is inte
 As you could see, it is just a silly use case I'm came up with; but there are a lot of scenarios where Annotations could be [handy](https://stackoverflow.com/questions/1372876/how-and-where-are-annotations-used-in-java#answer-1918154). It's become a trend for Java libraries, frameworks to be annotation-driven these days (including JavaEE).
 
 <b>Build and Run</b>
-The project is built using Maven, so `mvn -e exec:exec` is what you need to build the project and see the demo.
+The project is built using Maven, so `mvn -e clean package exec:exec` is what you need to build the project and see the demo.
