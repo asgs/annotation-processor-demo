@@ -19,6 +19,8 @@ import javax.lang.model.SourceVersion;
 
 import javax.tools.Diagnostic;
 
+import org.asgs.apdemo.annotation.PrivateOnly;
+
 /**
  * A Sample Annotation Processor for @PrivateOnly
  *
