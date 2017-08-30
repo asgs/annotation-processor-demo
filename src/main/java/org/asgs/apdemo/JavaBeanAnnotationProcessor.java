@@ -19,33 +19,32 @@ import javax.lang.model.SourceVersion;
 
 import javax.tools.Diagnostic;
 
+import org.asgs.apdemo.annotation.JavaBean;
 import org.asgs.apdemo.annotation.PrivateOnly;
 
 /**
- * A Sample Annotation Processor for @PrivateOnly
+ * The Annotation Processor for @JavaBean
  *
  */
 @SupportedSourceVersion(value=SourceVersion.RELEASE_8)
-@SupportedAnnotationTypes({"org.asgs.apdemo.annotation.PrivateOnly"})
-public class PrivateOnlyAnnotationProcessor extends AbstractProcessor {
+@SupportedAnnotationTypes({"org.asgs.apdemo.annotation.JavaBean"})
+public class JavaBeanAnnotationProcessor extends AbstractProcessor {
   public void init(ProcessingEnvironment processingEnvironment) {
-    System.out.println("Inited PrivateOnlyAnnotationProcessor with " + processingEnvironment);
+    System.out.println("Inited JavaBeanAnnotationProcessor with " + processingEnvironment);
     this.processingEnv = processingEnvironment;
   }
 
   public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnvironment) {
     System.out.println("-----------------------------------");
     System.out.println("DEBUG - Received a process request for the annotations " + annotations + "; RoundEnvironment is " + roundEnvironment);
-    Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(PrivateOnly.class);
+    Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(JavaBean.class);
     if (elements.isEmpty()) {
       return true;
     }
-    System.out.println("INFO - Types annotated with @PrivateOnly are " + elements);
-    List<? extends Element> fields = elements.stream().filter(e -> (e.getKind() == ElementKind.FIELD || e.getKind() == ElementKind.METHOD)).collect(Collectors.toList());
-    for (Element e : fields) {
-      if (!e.getModifiers().contains(Modifier.PRIVATE)) {
-        processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "Encountered a member without a private access modifier", e);
-      }
+    System.out.println("INFO - Types annotated with @JavaBean are " + elements);
+    List<? extends Element> types = elements.stream().filter(e -> (e.getKind() == ElementKind.CLASS)).collect(Collectors.toList());
+    for (Element e : types) {
+      // TODO - Generate a new Java file adding the setter/getter methods;
     }
     System.out.println("-----------------------------------");
     return true;

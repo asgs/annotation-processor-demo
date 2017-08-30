@@ -27,7 +27,7 @@ public class Main {
     StandardJavaFileManager fileManager = compiler.getStandardFileManager(null, null, null);
     Iterable<? extends JavaFileObject> javaFileObjects = fileManager.getJavaFileObjectsFromFiles(sourceFiles);
     JavaCompiler.CompilationTask task = compiler.getTask(null, fileManager, null, null, null, javaFileObjects);
-    task.setProcessors(Arrays.asList(new PrivateOnlyAnnotationProcessor()));
+    task.setProcessors(Arrays.asList(new PrivateOnlyAnnotationProcessor(), new JavaBeanAnnotationProcessor()));
     System.out.println(task.call());
   }
 }
