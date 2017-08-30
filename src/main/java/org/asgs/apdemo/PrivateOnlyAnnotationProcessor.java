@@ -36,7 +36,7 @@ public class PrivateOnlyAnnotationProcessor extends AbstractProcessor {
   public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnvironment) {
     System.out.println("Received a process request for the annotations " + annotations + "; RoundEnvironment is " + roundEnvironment);
     Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(PrivateOnly.class);
-    System.out.println("Types annotated with MyAnnotation are " + elements);
+    System.out.println("Types annotated with @PrivateOnly are " + elements);
     List<? extends Element> fields = elements.stream().filter(e -> (e.getKind() == ElementKind.FIELD || e.getKind() == ElementKind.METHOD)).collect(Collectors.toList());
     for (Element e : fields) {
       if (!e.getModifiers().contains(Modifier.PRIVATE)) {

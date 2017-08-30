@@ -41,8 +41,11 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>org.asgs.apdemo.Main</mainClass>
+	  <executable>java</executable>
           <arguments>
+	    <argument>-classpath</argument>            
+	    <classpath/>
+            <argument>org.asgs.apdemo.Main</argument>
             <argument>src/main/java/org/asgs/apdemo/classes</argument>
           </arguments>
         </configuration>
