@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.SOURCE;
  * to be private.
  *
  */
-@Target(value={TYPE,FIELD,METHOD})
+@Target(value={FIELD,METHOD})
 @Retention(value=SOURCE)
 public @interface PrivateOnly {
 
